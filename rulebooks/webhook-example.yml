@@ -10,7 +10,6 @@
   rules:
     - name: Say Hello
       condition: event.payload.message == "Ansible is super cool!"
-
       action:
         run_playbook:
           name: say-what.yml
