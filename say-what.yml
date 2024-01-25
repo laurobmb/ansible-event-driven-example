@@ -1,0 +1,7 @@
+---
+- name: Say what?
+  hosts: all
+  tasks:
+    - name: Say hello
+      ansible.builtin.debug:
+        msg: "Funcionou de boa!!"
