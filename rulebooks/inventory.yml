@@ -1,0 +1,15 @@
+all:
+  children:
+    eda:
+      hosts:
+        controller.localnet.local:
+          ansible_host: 192.168.100.14
+        eda.localnet.local:
+          ansible_host: 192.168.100.17
+        execution.localnet.local:
+          ansible_host: 192.168.100.12
+        hub.localnet.local:
+          ansible_host: 192.168.100.16
+        postgres.localnet.local:
+          ansible_host: 192.168.100.14
+    ungrouped: {}
