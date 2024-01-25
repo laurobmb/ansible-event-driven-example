@@ -1,6 +1,7 @@
 ---
 - name: Say what?
   hosts: all
+  gather_facts: false
   tasks:
     - name: Say hello
       ansible.builtin.debug:
