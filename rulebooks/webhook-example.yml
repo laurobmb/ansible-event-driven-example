@@ -11,5 +11,5 @@
     - name: Say Hello
       condition: event.payload.message == "Ansible is super cool"
       action:
-        run_playbook:
+        run_job_template:
           name: say-what.yml
