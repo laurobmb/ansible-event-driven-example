@@ -12,5 +12,5 @@
       condition: event.payload.message == "Ansible is magic cool"
       action:
         run_job_template:
-          name: say-what.yml
+          name: Demo Job Template
           organization: "Default"
