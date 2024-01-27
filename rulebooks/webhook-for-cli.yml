@@ -13,10 +13,3 @@
       action:
         run_playbook:
           name: say-what.yml
-
-#    - name: Say Hello 2
-#      condition: event.payload.message == "Ansible is magic cool"
-#      action:
-#        run_job_template:
-#          name: say-what.yml
-#          organization: "Default"
