@@ -9,14 +9,14 @@
 
   rules:
     - name: Say Hello 2
-      condition: event.payload.message == "Ansible is magic cool"
+      condition: event.payload.message == "Ansible template is cool"
       action:
         run_job_template:
           name: Automation - Install HAPROXY and HTTPD
           organization: "Default"
 
     - name: Say Hello
-      condition: event.payload.message == "Ansible is magic cool"
+      condition: event.payload.message == "Ansible workflow is cool"
       action:
         run_workflow_template:
           name: Automation - Install HAPROXY and HTTPD
