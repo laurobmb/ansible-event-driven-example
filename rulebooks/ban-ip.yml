@@ -1,0 +1,27 @@
+---
+# rulebook.yaml
+
+- name: Handle Fail2ban Ban and Unban Requests
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 7777
+  rules:
+    - name: Ban IP address
+      condition: event.meta.endpoint == "ban-ip"
+      action:
+        run_playbook:
+          name: handle_ip.yaml
+          extra_vars:
+            ip_address: "{{ event.payload.ip }}"
+            ip_state: "present"
+
+    - name: Unban IP address
+      condition: event.meta.endpoint == "unban-ip"
+      action:
+        run_playbook:
+          name: handle_ip.yaml
+          extra_vars:
+            ip_address: "{{ event.payload.ip }}"
+            ip_state: "absent"
