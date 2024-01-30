@@ -6,7 +6,7 @@
       ansible.eda.url_check:
         urls:
           - 'http://web.localnet.local/'
-        delay: 50
+        delay: 30
         verify_ssl: false
 
   rules:
