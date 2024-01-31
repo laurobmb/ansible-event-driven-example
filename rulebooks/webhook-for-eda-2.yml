@@ -1,0 +1,18 @@
+---
+- name: Ansible workflow is cool
+  hosts: all
+
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+
+  rules:
+
+    - name: Say Hello
+      condition: event.payload.message == "Ansible workflow is cool"
+      action:
+        run_workflow_template:
+          name: Automation - Install HAPROXY and HTTPD
+          organization: "Default"
+
