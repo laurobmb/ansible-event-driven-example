@@ -1,0 +1,17 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: flask-router
+  namespace: flask-uat
+  labels:
+    app: flask
+spec:
+  host: ""
+  to:
+    kind: Service
+    name: flask-uat
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None

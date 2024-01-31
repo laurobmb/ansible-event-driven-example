@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-uat
+  namespace: flask-uat
+  labels:
+    app: flask
+spec:
+  type: ClusterIP
+  selector:
+    app: flask  
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP

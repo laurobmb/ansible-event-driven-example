@@ -1,0 +1,36 @@
+---
+- name: Deploy
+  hosts: localhost
+  vars:
+    openshift_user: kubeadmin
+    openshift_password: Wq2py-G6Ywa-HM3vy-YEt9b
+    ocp_projects_clusters:
+      local: https://api.crc.testing:6443
+    ocp_projects_cluster: local
+    ocp_projects_name: flask-uat
+    # estado_do_deploy: 'absent'
+  module_defaults:
+    group/redhat.openshift.openshift:
+      host: '{{ ocp_projects_clusters[ocp_projects_cluster|lower|trim] }}'
+      validate_certs: false
+  tasks:
+
+  - name: Faz o login (obtem o token de acesso)
+    redhat.openshift.openshift_auth:
+      username: '{{ openshift_user }}'
+      password: '{{ openshift_password }}'
+    register: openshift_auth_results
+
+  - name: Cria lista de arquivos
+    ansible.builtin.find:
+      paths: ymls/
+      recurse: true
+      file_type: file
+    register: lista_arquivos
+
+  - name: Cria recursos '{{ ocp_projects_name }}'
+    redhat.openshift.k8s:
+      api_key: '{{ openshift_auth_results.k8s_auth.api_key }}'
+      state: "{{ estado_do_deploy | default('present') }}"
+      definition: "{{ lookup('template', item.path) | from_yaml }}"
+    loop: "{{ lista_arquivos.files }}"
