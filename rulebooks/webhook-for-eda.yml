@@ -21,3 +21,10 @@
         run_workflow_template:
           name: Automation - Install HAPROXY and HTTPD
           organization: "Default"
+
+    - name: Deploy flask app
+      condition: event.payload.message == "deploy"
+      action:
+        run_job_template:
+          name: flaskapp-deploy
+          organization: "Default"
